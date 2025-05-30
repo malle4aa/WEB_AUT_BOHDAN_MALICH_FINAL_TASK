@@ -7,41 +7,31 @@ describe('Automation Practice Form', () => {
     cy.get('#firstName').type('John');
     cy.get('#lastName').type('Doe');
     cy.get('#userEmail').type('john.doe@example.com');
-    cy.get('label[for="gender-radio-1"]').click(); // Male
+    cy.get('label[for="gender-radio-1"]').click(); 
     cy.get('#userNumber').type('1234567890');
-
-    // Set Date of Birth
+    
     cy.get('#dateOfBirthInput').click();
     cy.get('.react-datepicker__month-select').select('February');
     cy.get('.react-datepicker__year-select').select('1930');
     cy.get('.react-datepicker__day--028:not(.react-datepicker__day--outside-month)').click();
 
-
-    // Subject
     cy.get('#subjectsInput').type('Economics{enter}');
 
-    // Hobby
-    cy.get('label[for="hobbies-checkbox-3"]').click(); // Music
+    cy.get('label[for="hobbies-checkbox-3"]').click(); 
 
-    // Upload file
     cy.get('#uploadPicture').selectFile('files/sampleImage.jpg');
 
-    // Address (required field)
     cy.get('#currentAddress').type('123 Street Name');
 
-    // Click the state dropdown container first
     cy.get('#state').click();
     cy.get('#react-select-3-input').type('NCR{enter}');
 
-// Click the city dropdown container
     cy.get('#city').click();
     cy.get('#react-select-4-input').type('Delhi{enter}');
 
-
-    // Submit
+    
     cy.get('#submit').click();
 
-    // Assertions
     cy.get('td').contains('Student Name').siblings().should('contain', 'John Doe');
     cy.get('td').contains('Student Email').siblings().should('contain', 'john.doe@example.com');
     cy.get('td').contains('Gender').siblings().should('contain', 'Male');
